@@ -18,6 +18,7 @@ document.querySelector(`.check`).addEventListener(`click`, function(){
    else if(guess === secretNumber){
        displayMessage(`Correct Number!`);
        document.querySelector(`body`).style.backgroundColor = `green`;
+       document.querySelector(`.number`).textContent = secretNumber;
 
        if(score > highscore){
            highscore = score;
@@ -32,7 +33,7 @@ document.querySelector(`.check`).addEventListener(`click`, function(){
         document.querySelector(`.score `).textContent = score;
 
         if(score < 1){
-            displayMessage(`You lost the game!`);
+            displayMessage(`You lost the game! Try again!`);
             document.querySelector(`.score`).textContent = 0;
             document.querySelector(`body`).style.backgroundColor = `red`;
         }
@@ -48,4 +49,5 @@ document.querySelector(`.again`).addEventListener(`click`, function(){
     document.querySelector(`.score`).textContent = score;
     document.querySelector(`body`).style.backgroundColor = `#222`;
     document.querySelector(`.guess`).value = ``;
+    document.querySelector(`.number`).textContent = `?`;
 });
