@@ -3,6 +3,7 @@
 let secretNumber = Math.trunc(Math.random() * 20 + 1);
 let score = 20;
 let highscore = 0;
+let playing = true;
 
 const displayMessage = function(message){
     document.querySelector(`.message`).textContent = message;
@@ -11,14 +12,15 @@ const displayMessage = function(message){
 document.querySelector(`.check`).addEventListener(`click`, function(){
    const guess = Number(document.querySelector(`.guess`).value);
    
-   if(!guess){
+   if(!guess && playing){
        displayMessage(`You need to insert a number!`);
    }
 
-   else if(guess === secretNumber){
+   else if(guess === secretNumber && playing){
        displayMessage(`Correct Number!`);
        document.querySelector(`body`).style.backgroundColor = `green`;
        document.querySelector(`.number`).textContent = secretNumber;
+       playing = false;
 
        if(score > highscore){
            highscore = score;
@@ -26,7 +28,7 @@ document.querySelector(`.check`).addEventListener(`click`, function(){
        }
    }
    
-   else if(guess !== secretNumber){
+   else if(guess !== secretNumber && playing){
        displayMessage(guess > secretNumber ? `Too High!` : `Too Low!`);
 
         score--;
@@ -50,6 +52,7 @@ document.querySelector(`.again`).addEventListener(`click`, function(){
     document.querySelector(`body`).style.backgroundColor = `#222`;
     document.querySelector(`.guess`).value = ``;
     document.querySelector(`.number`).textContent = `?`;
+    playing = true;
 });
 
 // Guess My Number
